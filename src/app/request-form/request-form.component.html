@@ -1,0 +1,35 @@
+<header class="header-text">
+    <h2>Sprawdź aktualny kurs waluty</h2>
+</header>
+
+<form [formGroup]="form" class="form-container" (ngSubmit)="onSubmit()">
+    <section>
+        <mat-form-field class="mat-input">
+            <mat-label>Podaj kod waluty</mat-label>
+            <input  matInput formControlName="currencyCode">
+            @if (form.controls.currencyCode.hasError('required')) {
+                <mat-error>Pole nie może być puste</mat-error>
+            }
+        </mat-form-field>
+        
+        <mat-form-field class="mat-input">
+            <mat-label>Imię i nazwisko</mat-label>
+            <input matInput formControlName="name">
+            @if (form.controls.name.hasError('required')) {
+                <mat-error>Pole nie może być puste</mat-error>
+            }
+        </mat-form-field>
+    </section>
+
+    <section>
+        <button type="submit" class="btn btn-outline-primary">Sprawdź</button>
+    </section>
+</form>
+
+<section>
+    @if (value) {
+        <div class="response header-text">
+            <h3>Kurs dla waluty {{currencyCodeName}} wynosi {{value}}</h3>
+        </div>
+    }
+</section>
